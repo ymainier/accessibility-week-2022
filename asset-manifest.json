@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/accessibility-week-2022/static/css/main.7d1e3cc6.css",
+    "main.js": "/accessibility-week-2022/static/js/main.c30b7d71.js",
+    "static/js/787.58b6cf89.chunk.js": "/accessibility-week-2022/static/js/787.58b6cf89.chunk.js",
+    "static/media/nowtvtext-bold.woff2": "/accessibility-week-2022/static/media/nowtvtext-bold.00cb237887aec38612ba.woff2",
+    "static/media/nowtvtext-regular.woff2": "/accessibility-week-2022/static/media/nowtvtext-regular.75598e9672c423db7973.woff2",
+    "index.html": "/accessibility-week-2022/index.html",
+    "main.7d1e3cc6.css.map": "/accessibility-week-2022/static/css/main.7d1e3cc6.css.map",
+    "main.c30b7d71.js.map": "/accessibility-week-2022/static/js/main.c30b7d71.js.map",
+    "787.58b6cf89.chunk.js.map": "/accessibility-week-2022/static/js/787.58b6cf89.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7d1e3cc6.css",
+    "static/js/main.c30b7d71.js"
+  ]
+}
