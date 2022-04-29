@@ -4,33 +4,116 @@ import { Dialog } from "@reach/dialog";
 import "@reach/dialog/styles.css";
 import "./app.css";
 
-const data = {
-  keynote: {
-    title: "Keynote",
-    description: "Accessibility Week 2022 keynote by …",
-  },
-  workshop: {
-    title: "Workshop",
-    description: "Learning about Accessibility Tooling, like axe and VoiceOver",
-  },
-  talk1: {
-    title: "First Talk",
-    description: "Our first talk will be about something interesting",
-  },
-  talk2: {
-    title: "Second Talk",
-    description: "Our second talk will also be about something interesting",
-  },
-  talk3: {
-    title: "Last Talk",
-    description:
-      "Our last talk will also be about something interesting but it will be the last one",
-  },
-  innovationtime: {
-    title: "Innovation Time",
-    description:
-      "During the whole week there will be time dedicated to fix accessiblity issues discovered during various audit, ensure a fair test coverage using the latest accessiblity tools and innovate around the accessibility of our products.",
-  },
+function H1OrH2({ isH1, children, ...props }) {
+  return isH1 ? <h1 {...props}>{children}</h1> : <h2 {...props}>{children}</h2>;
+}
+
+function Keynote({ isShown }) {
+  return (
+    <>
+      <H1OrH2 isH1={isShown} id="dialog-label">
+        Accessibility Week Keynote
+      </H1OrH2>
+      <p>Accessibility Week 2022 keynote by Andy.</p>
+    </>
+  );
+}
+
+function Workshop({ isShown }) {
+  return (
+    <>
+      <H1OrH2 isH1={isShown} id="dialog-label">
+        Workshop
+      </H1OrH2>
+      <p>
+        Our 2 workshops will be an opportunity for our frontend teams to learn
+        more about the use of screen readers, specifically Voice Over on MacOS.
+      </p>
+      <p>
+        We will also see in detail how to use <code>jest-axe</code> and{" "}
+        <code>cypress-axe</code> in our test suites.
+      </p>
+      <p>
+        Finally, these workshops will be an opportunity for everyone to use our
+        applications using a screen reader and to understand the difficulties
+        encountered by our users using these tools.
+      </p>
+    </>
+  );
+}
+
+function FirstTalk({ isShown }) {
+  return (
+    <>
+      <H1OrH2 isH1={isShown} id="dialog-label">
+        Accessible Forms: It’s Not as Difficult as You Think
+      </H1OrH2>
+      <p>
+        This talk by Maria Lamardo demonstrates how to design accessible form,
+        how form element interact with assistive technologies and what technical
+        aspect to take into consideration.{" "}
+        <a href="https://www.deque.com/axe-con/sessions/accessible-forms-its-not-as-difficult-as-you-think/">
+          Find the talk on the axe con website.
+        </a>
+      </p>
+    </>
+  );
+}
+
+function SecondTalk({ isShown }) {
+  return (
+    <>
+      <H1OrH2 isH1={isShown} id="dialog-label">
+        Testing Web Accessibility
+      </H1OrH2>
+      <p>
+        This talk by Adrián Bolonio is focused around automatically testing web
+        accessibility. It contains a lot of ideas on how to do that.{" "}
+        <a href="https://www.deque.com/axe-con/sessions/testing-web-accessibility/">
+          Find the talk on the axe con website.
+        </a>
+      </p>
+    </>
+  );
+}
+
+function ThirdTalk({ isShown }) {
+  return (
+    <>
+      <H1OrH2 isH1={isShown} id="dialog-label">
+        Accessibility Week Keynote
+      </H1OrH2>
+      <p>
+        Our last talk will also be about something interesting but it will be
+        the last one
+      </p>
+    </>
+  );
+}
+
+function InnovationTime({isShown}) {
+  return (
+    <>
+      <H1OrH2 isH1={isShown} id="dialog-label">
+        Accessibility Week Keynote
+      </H1OrH2>
+      <p>
+        During the whole week there will be time dedicated to fix accessiblity
+        issues discovered during various audit, ensure a fair test coverage
+        using the latest accessiblity tools and innovate around the
+        accessibility of our products.
+      </p>
+    </>
+  );
+}
+
+const Descriptions = {
+  keynote: Keynote,
+  workshop: Workshop,
+  talk1: FirstTalk,
+  talk2: SecondTalk,
+  talk3: ThirdTalk,
+  innovationtime: InnovationTime,
 };
 
 function Cell({ children, hidden, onClick }) {
@@ -43,18 +126,6 @@ function Cell({ children, hidden, onClick }) {
   );
 }
 
-function MainOrAside({ isMain, children, ...props }) {
-  return isMain ? (
-    <main {...props}>{children}</main>
-  ) : (
-    <aside {...props}>{children}</aside>
-  );
-}
-
-function H1OrH2({ isH1, children, ...props }) {
-  return isH1 ? <h1 {...props}>{children}</h1> : <h2 {...props}>{children}</h2>;
-}
-
 export function App() {
   const [showDialog, setShowDialog] = useState(false);
   const [current, setCurrent] = useState(undefined);
@@ -64,9 +135,11 @@ export function App() {
   };
   const close = () => setShowDialog(false);
 
+  const Description = current ? Descriptions[current] : null;
+
   return (
     <div className="app">
-      <MainOrAside isMain={!showDialog} className="schedule">
+      <div className="schedule">
         <header>
           <H1OrH2 isH1={!showDialog} id="title">
             Accessibility Week 2022
@@ -96,8 +169,8 @@ export function App() {
               <Cell hidden={showDialog} onClick={open("talk2")}>
                 Talk
               </Cell>
-              <Cell hidden={showDialog} onClick={open("talk3")}>
-                Talk
+              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+                Innovation time
               </Cell>
               <Cell hidden={showDialog} onClick={open("innovationtime")}>
                 Innovation time
@@ -114,6 +187,42 @@ export function App() {
               <Cell hidden={showDialog} onClick={open("innovationtime")}>
                 Innovation time
               </Cell>
+              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+                Innovation time
+              </Cell>
+            </tr>
+            <tr>
+              <th scope="row">13:30 - 14:30</th>
+              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={showDialog} onClick={open("talk3")}>
+                Talk
+              </Cell>
+              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+                Innovation time
+              </Cell>
+            </tr>
+            <tr>
+              <th scope="row">14:30 - 16:00</th>
+              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+                Innovation time
+              </Cell>
               <Cell hidden={showDialog} onClick={open("workshop")}>
                 Workshop
               </Cell>
@@ -122,7 +231,7 @@ export function App() {
               </Cell>
             </tr>
             <tr>
-              <th scope="row">13:30 - 17:30</th>
+              <th scope="row">16:00 - 17:30</th>
               <Cell hidden={showDialog} onClick={open("innovationtime")}>
                 Innovation time
               </Cell>
@@ -141,26 +250,21 @@ export function App() {
             </tr>
           </tbody>
         </table>
-      </MainOrAside>
-      {current && data[current] && (
-        <Dialog
-          isOpen={showDialog}
-          onDismiss={close}
-          aria-labelledby="dialog-label"
-        >
-          <MainOrAside isMain={showDialog}>
-            <H1OrH2 isH1={showDialog} className="title" id="dialog-label">
-              {data[current].title}
-            </H1OrH2>
-            <p
-              dangerouslySetInnerHTML={{ __html: data[current].description }}
-            />
-            <button className="close-button" onClick={close}>
-              Close
-            </button>
-          </MainOrAside>
-        </Dialog>
-      )}
+        {Description && showDialog && (
+          <Dialog
+            isOpen={showDialog}
+            onDismiss={close}
+            aria-labelledby="dialog-label"
+          >
+            <main>
+              <Description isShown={showDialog} />
+              <button className="close-button" onClick={close}>
+                Close
+              </button>
+            </main>
+          </Dialog>
+        )}
+      </div>
     </div>
   );
 }
