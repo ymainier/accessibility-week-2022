@@ -42,7 +42,7 @@ function Workshop({ isShown }) {
   );
 }
 
-function FirstTalk({ isShown }) {
+function AccessibleFormTalk({ isShown }) {
   return (
     <>
       <H1OrH2 isH1={isShown} id="dialog-label">
@@ -60,7 +60,7 @@ function FirstTalk({ isShown }) {
   );
 }
 
-function SecondTalk({ isShown }) {
+function TestingWebAccessiblityTalk({ isShown }) {
   return (
     <>
       <H1OrH2 isH1={isShown} id="dialog-label">
@@ -77,21 +77,22 @@ function SecondTalk({ isShown }) {
   );
 }
 
-function ThirdTalk({ isShown }) {
+function ImprovingAccessibilityWithCSSTalk({ isShown }) {
   return (
     <>
       <H1OrH2 isH1={isShown} id="dialog-label">
-        Accessibility Week Keynote
+        Improving Accessibility with CSS
       </H1OrH2>
       <p>
-        Our last talk will also be about something interesting but it will be
-        the last one
+        This talk will introduce modern CSS practices to the audience. A
+        departure from the way we have been writing styles for years, this new
+        techniques will benefit people with different necessities.
       </p>
     </>
   );
 }
 
-function InnovationTime({isShown}) {
+function InnovationTime({ isShown }) {
   return (
     <>
       <H1OrH2 isH1={isShown} id="dialog-label">
@@ -107,13 +108,25 @@ function InnovationTime({isShown}) {
   );
 }
 
+function TestingStrategies({ isShown }) {
+  return (
+    <>
+      <H1OrH2 isH1={isShown} id="dialog-label">
+        Testing Accessiblity Strategies
+      </H1OrH2>
+      <p>Discussion about our Testing Strategies for Accessiblity.</p>
+    </>
+  );
+}
+
 const Descriptions = {
   keynote: Keynote,
   workshop: Workshop,
-  talk1: FirstTalk,
-  talk2: SecondTalk,
-  talk3: ThirdTalk,
+  talk1: AccessibleFormTalk,
+  talk2: ImprovingAccessibilityWithCSSTalk,
+  talk3: TestingWebAccessiblityTalk,
   innovationtime: InnovationTime,
+  testingStrategies: TestingStrategies,
 };
 
 function Cell({ children, hidden, onClick }) {
@@ -142,7 +155,7 @@ export function App() {
       <div className="schedule">
         <header>
           <H1OrH2 isH1={!showDialog} id="title">
-            Accessibility Week 2022
+            SAS Accessibility Week 2022
           </H1OrH2>
           <p>from Monday 16th May to Friday 20th May</p>
         </header>
@@ -208,8 +221,8 @@ export function App() {
               <Cell hidden={showDialog} onClick={open("talk3")}>
                 Talk
               </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
-                Innovation time
+              <Cell hidden={showDialog} onClick={open("testingStrategies")}>
+                Testing Strategies
               </Cell>
             </tr>
             <tr>
