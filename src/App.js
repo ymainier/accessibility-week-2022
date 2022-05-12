@@ -8,13 +8,17 @@ function H1OrH2({ isH1, children, ...props }) {
   return isH1 ? <h1 {...props}>{children}</h1> : <h2 {...props}>{children}</h2>;
 }
 
-function Keynote({ isShown }) {
+function Welcome({ isShown }) {
   return (
     <>
       <H1OrH2 isH1={isShown} id="dialog-label">
-        Accessibility Week Keynote
+        Welcome to Accessibility Week 2022!
       </H1OrH2>
-      <p>Accessibility Week 2022 keynote by Andy.</p>
+      <p>
+        We will have an introduction to this year's Accessibility Week and an
+        overview of the schedule. We will also have an outline of the progress
+        made so far.
+      </p>
     </>
   );
 }
@@ -96,7 +100,7 @@ function InnovationTime({ isShown }) {
   return (
     <>
       <H1OrH2 isH1={isShown} id="dialog-label">
-        Accessibility Week Keynote
+        Innovation Time!
       </H1OrH2>
       <p>
         During the whole week there will be time dedicated to fix accessiblity
@@ -114,13 +118,17 @@ function TestingStrategies({ isShown }) {
       <H1OrH2 isH1={isShown} id="dialog-label">
         Testing Accessiblity Strategies
       </H1OrH2>
-      <p>Discussion about our Testing Strategies for Accessiblity.</p>
+      <p>
+        We will discuss how we should use jsx-a11y, jest-axe, cypress-axe and
+        lighthouse to provide the best testing safety net for our apps without
+        over-testing things and wasting resources.
+      </p>
     </>
   );
 }
 
 const Descriptions = {
-  keynote: Keynote,
+  welcome: Welcome,
   workshop: Workshop,
   talk1: AccessibleFormTalk,
   talk2: ImprovingAccessibilityWithCSSTalk,
@@ -129,9 +137,9 @@ const Descriptions = {
   testingStrategies: TestingStrategies,
 };
 
-function Cell({ children, hidden, onClick }) {
+function Cell({ children, hidden, onClick, rowspan }) {
   return (
-    <td>
+    <td rowSpan={rowspan}>
       <button tabIndex={hidden ? -1 : 0} onClick={onClick}>
         {children}
       </button>
@@ -171,20 +179,26 @@ export function App() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">10:00 - 11:00</th>
-              <Cell hidden={showDialog} onClick={open("keynote")}>
-                Keynote
+          <tr>
+              <th scope="row">10:00 - 10:30</th>
+              <Cell hidden={showDialog} onClick={open("welcome")}>
+                Welcome
               </Cell>
-              <Cell hidden={showDialog} onClick={open("talk1")}>
+              <Cell rowspan={2} hidden={showDialog} onClick={open("talk1")}>
                 Talk
               </Cell>
-              <Cell hidden={showDialog} onClick={open("talk2")}>
+              <Cell rowspan={2} hidden={showDialog} onClick={open("talk2")}>
                 Talk
               </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+              <Cell rowspan={2} hidden={showDialog} onClick={open("innovationtime")}>
                 Innovation time
               </Cell>
+              <Cell rowspan={2} hidden={showDialog} onClick={open("innovationtime")}>
+                Innovation time
+              </Cell>
+            </tr>
+            <tr>
+              <th scope="row">10:30 - 11:00</th>
               <Cell hidden={showDialog} onClick={open("innovationtime")}>
                 Innovation time
               </Cell>

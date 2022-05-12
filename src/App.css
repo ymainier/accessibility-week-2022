@@ -89,7 +89,6 @@ h1, h2 {
 .schedule th {
   padding: 12px 18px;
   border: 1px solid var(--light-grey);
-  vertical-align: top;
 }
 
 .close-button {
