@@ -44,6 +44,11 @@ h1, h2 {
 
 .schedule table {
   border-collapse: collapse;
+  margin: 4rem auto;
+}
+
+.schedule .talk {
+  background-color: #eee;
 }
 
 .schedule button {
@@ -51,7 +56,8 @@ h1, h2 {
   border-color: transparent;
   cursor: pointer;
   text-decoration: underline;
-}
+  width: 100%;
+  text-align: left;}
 
 .schedule .empty {
   border-top-color: transparent;

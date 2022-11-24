@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dialog } from "@reach/dialog";
 
 import "@reach/dialog/styles.css";
-import "./app.css";
+import "./App.css";
 
 function H1OrH2({ isH1, children, ...props }) {
   return isH1 ? <h1 {...props}>{children}</h1> : <h2 {...props}>{children}</h2>;
@@ -12,91 +12,59 @@ function Welcome({ isShown }) {
   return (
     <>
       <H1OrH2 isH1={isShown} id="dialog-label">
-        Welcome to Accessibility Week 2022!
+        Welcome to the second Accessibility Week of 2022!
       </H1OrH2>
       <p>
-        We will have an introduction to this year's Accessibility Week and an
-        overview of the schedule. We will also have an outline of the progress
-        made so far.
+        We will have an introduction to this end of year Accessibility Week and
+        an overview of the schedule. We will also have an outline of the
+        progress made so far.
       </p>
     </>
   );
 }
 
-function Workshop({ isShown }) {
+function Product({ isShown }) {
   return (
     <>
       <H1OrH2 isH1={isShown} id="dialog-label">
-        Workshop
+        Product to Development Handoff
       </H1OrH2>
       <p>
-        Our 2 workshops will be an opportunity for our frontend teams to learn
-        more about the use of screen readers, specifically Voice Over on MacOS.
-      </p>
-      <p>
-        We will also see in detail how to use <code>jest-axe</code> and{" "}
-        <code>cypress-axe</code> in our test suites.
-      </p>
-      <p>
-        Finally, these workshops will be an opportunity for everyone to use our
-        applications using a screen reader and to understand the difficulties
-        encountered by our users using these tools.
+        Ron is going to give a talk on how we can successfully handoff
+        accessibility from product to development.
       </p>
     </>
   );
 }
 
-function AccessibleFormTalk({ isShown }) {
+function HeadlessUI({ isShown }) {
   return (
     <>
       <H1OrH2 isH1={isShown} id="dialog-label">
-        Accessible Forms: It’s Not as Difficult as You Think
+        Using a Headless UI lib for Accessibility
       </H1OrH2>
       <p>
-        This talk by Maria Lamardo demonstrates how to design accessible form,
-        how form element interact with assistive technologies and what technical
-        aspect to take into consideration.{" "}
-        <a href="https://www.deque.com/axe-con/sessions/accessible-forms-its-not-as-difficult-as-you-think/">
-          Find the talk on the axe con website.
-        </a>
+        Yann is going to give a talk on using a headless UI lib to help with
+        Accessibility.
       </p>
     </>
   );
 }
 
-function TestingWebAccessiblityTalk({ isShown }) {
+function AccessibilityTree({ isShown }) {
   return (
     <>
       <H1OrH2 isH1={isShown} id="dialog-label">
-        Testing Web Accessibility
+        Chrome & Firefox Accessibility Tree
       </H1OrH2>
       <p>
-        This talk by Adrián Bolonio is focused around automatically testing web
-        accessibility. It contains a lot of ideas on how to do that.{" "}
-        <a href="https://www.deque.com/axe-con/sessions/testing-web-accessibility/">
-          Find the talk on the axe con website.
-        </a>
+        Abel is going to give a talk on the Chrome & Firefox Accessibility Tree.
       </p>
     </>
   );
 }
 
-function ImprovingAccessibilityWithCSSTalk({ isShown }) {
-  return (
-    <>
-      <H1OrH2 isH1={isShown} id="dialog-label">
-        Improving Accessibility with CSS
-      </H1OrH2>
-      <p>
-        This talk will introduce modern CSS practices to the audience. A
-        departure from the way we have been writing styles for years, this new
-        techniques will benefit people with different necessities.
-      </p>
-    </>
-  );
-}
-
-function InnovationTime({ isShown }) {
+function Innovation({ isShown }) {
   return (
     <>
       <H1OrH2 isH1={isShown} id="dialog-label">
@@ -112,34 +80,17 @@ function InnovationTime({ isShown }) {
   );
 }
 
-function TestingStrategies({ isShown }) {
-  return (
-    <>
-      <H1OrH2 isH1={isShown} id="dialog-label">
-        Testing Accessiblity Strategies
-      </H1OrH2>
-      <p>
-        We will discuss how we should use jsx-a11y, jest-axe, cypress-axe and
-        lighthouse to provide the best testing safety net for our apps without
-        over-testing things and wasting resources.
-      </p>
-    </>
-  );
-}
-
 const Descriptions = {
   welcome: Welcome,
-  workshop: Workshop,
-  talk1: AccessibleFormTalk,
-  talk2: ImprovingAccessibilityWithCSSTalk,
-  talk3: TestingWebAccessiblityTalk,
-  innovationtime: InnovationTime,
-  testingStrategies: TestingStrategies,
+  talk1: Product,
+  talk2: HeadlessUI,
+  talk3: AccessibilityTree,
+  innovation: Innovation,
 };
 
-function Cell({ children, hidden, onClick, rowspan }) {
+function Cell({ children, hidden, onClick, rowspan, isTalk }) {
   return (
-    <td rowSpan={rowspan}>
+    <td rowSpan={rowspan} className={isTalk ? "talk" : ""}>
       <button tabIndex={hidden ? -1 : 0} onClick={onClick}>
         {children}
       </button>
@@ -148,13 +99,13 @@ function Cell({ children, hidden, onClick, rowspan }) {
 }
 
 export function App() {
-  const [showDialog, setShowDialog] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [current, setCurrent] = useState(undefined);
   const open = (id) => () => {
     setCurrent(id);
-    setShowDialog(true);
+    setHidden(true);
   };
-  const close = () => setShowDialog(false);
+  const close = () => setHidden(false);
 
   const Description = current ? Descriptions[current] : null;
 
@@ -162,10 +113,10 @@ export function App() {
     <div className="app">
       <div className="schedule">
         <header>
-          <H1OrH2 isH1={!showDialog} id="title">
+          <H1OrH2 isH1={!hidden} id="title">
             SAS Accessibility Week 2022
           </H1OrH2>
-          <p>from Monday 16th May to Friday 20th May</p>
+          <p>from Monday 28th November to Friday 02nd December</p>
         </header>
         <table aria-label="Accessibility Week Schedule">
           <thead>
@@ -179,112 +130,106 @@ export function App() {
             </tr>
           </thead>
           <tbody>
-          <tr>
+            <tr>
               <th scope="row">10:00 - 10:30</th>
-              <Cell hidden={showDialog} onClick={open("welcome")}>
+              <Cell hidden={hidden} onClick={open("welcome")} isTalk>
                 Welcome
               </Cell>
-              <Cell rowspan={2} hidden={showDialog} onClick={open("talk1")}>
-                Talk
-              </Cell>
-              <Cell rowspan={2} hidden={showDialog} onClick={open("talk2")}>
-                Talk
-              </Cell>
-              <Cell rowspan={2} hidden={showDialog} onClick={open("innovationtime")}>
+              <Cell rowspan={5} hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
-              <Cell rowspan={2} hidden={showDialog} onClick={open("innovationtime")}>
+              <Cell rowspan={2} hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell rowspan={3} hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell rowspan={5} hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
             </tr>
             <tr>
               <th scope="row">10:30 - 11:00</th>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+              <Cell rowspan={4} hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
             </tr>
             <tr>
-              <th scope="row">11:00 - 12:30</th>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
-                Innovation time
-              </Cell>
-              <Cell hidden={showDialog} onClick={open("workshop")}>
-                Workshop
-              </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
-                Innovation time
-              </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
-                Innovation time
-              </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
-                Innovation time
-              </Cell>
-            </tr>
-            <tr>
-              <th scope="row">13:30 - 14:30</th>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
-                Innovation time
-              </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
-                Innovation time
-              </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
-                Innovation time
-              </Cell>
-              <Cell hidden={showDialog} onClick={open("talk3")}>
+              <th scope="row">11:00 - 11:30</th>
+              <Cell hidden={hidden} onClick={open("talk2")} isTalk>
                 Talk
               </Cell>
-              <Cell hidden={showDialog} onClick={open("testingStrategies")}>
-                Testing Strategies
+            </tr>
+            <tr>
+              <th scope="row">11:30 - 12:00</th>
+              <Cell rowspan={2} hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("talk3")} isTalk>
+                Talk
               </Cell>
             </tr>
             <tr>
-              <th scope="row">14:30 - 16:00</th>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
-                Innovation time
-              </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
-                Innovation time
-              </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
-                Innovation time
-              </Cell>
-              <Cell hidden={showDialog} onClick={open("workshop")}>
-                Workshop
-              </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+              <th scope="row">12:00 - 12:30</th>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
             </tr>
             <tr>
-              <th scope="row">16:00 - 17:30</th>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+              <th scope="row">13:30 - 14:00</th>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+              <Cell rowspan={8} hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+              <Cell rowspan={8} hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+              <Cell rowspan={8} hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
-              <Cell hidden={showDialog} onClick={open("innovationtime")}>
+              <Cell rowspan={8} hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
+            </tr>
+            <tr>
+              <th scope="row">14:00 - 14:30</th>
+              <Cell hidden={hidden} onClick={open("talk1")} isTalk>
+                Talk
+              </Cell>
+            </tr>
+            <tr>
+              <th scope="row">14:30 - 15:00</th>
+              <Cell rowspan={6} hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+            </tr>
+            <tr>
+              <th scope="row">15:00 - 15:30</th>
+            </tr>
+            <tr>
+              <th scope="row">15:30 - 16:00</th>
+            </tr>
+            <tr>
+              <th scope="row">16:00 - 16:30</th>
+            </tr>
+            <tr>
+              <th scope="row">16:30 - 17:00</th>
+            </tr>
+            <tr>
+              <th scope="row">17:00 - 17:30</th>
             </tr>
           </tbody>
         </table>
-        {Description && showDialog && (
+        {Description && hidden && (
           <Dialog
-            isOpen={showDialog}
+            isOpen={hidden}
             onDismiss={close}
             aria-labelledby="dialog-label"
           >
             <main>
-              <Description isShown={showDialog} />
+              <Description isShown={hidden} />
               <button className="close-button" onClick={close}>
                 Close
               </button>
