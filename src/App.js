@@ -135,38 +135,71 @@ export function App() {
               <Cell hidden={hidden} onClick={open("welcome")} isTalk>
                 Welcome
               </Cell>
-              <Cell rowspan={5} hidden={hidden} onClick={open("innovation")}>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
-              <Cell rowspan={2} hidden={hidden} onClick={open("innovation")}>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
-              <Cell rowspan={3} hidden={hidden} onClick={open("innovation")}>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
-              <Cell rowspan={5} hidden={hidden} onClick={open("innovation")}>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
             </tr>
             <tr>
               <th scope="row">10:30 - 11:00</th>
-              <Cell rowspan={4} hidden={hidden} onClick={open("innovation")}>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
             </tr>
             <tr>
               <th scope="row">11:00 - 11:30</th>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
               <Cell hidden={hidden} onClick={open("talk2")} isTalk>
                 Talk
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
               </Cell>
             </tr>
             <tr>
               <th scope="row">11:30 - 12:00</th>
-              <Cell rowspan={2} hidden={hidden} onClick={open("innovation")}>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
               <Cell hidden={hidden} onClick={open("talk3")} isTalk>
                 Talk
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
               </Cell>
             </tr>
             <tr>
@@ -174,22 +207,42 @@ export function App() {
               <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+            </tr>
+            <tr className="lunch-break">
+              <th scope="row">12:30 - 13:30</th>
+              <td><span>Lunch break</span></td>
+              <td><span>Lunch break</span></td>
+              <td><span>Lunch break</span></td>
+              <td><span>Lunch break</span></td>
+              <td><span>Lunch break</span></td>
             </tr>
             <tr>
               <th scope="row">13:30 - 14:00</th>
               <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
-              <Cell rowspan={8} hidden={hidden} onClick={open("innovation")}>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
-              <Cell rowspan={8} hidden={hidden} onClick={open("innovation")}>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
-              <Cell rowspan={8} hidden={hidden} onClick={open("innovation")}>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
-              <Cell rowspan={8} hidden={hidden} onClick={open("innovation")}>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
             </tr>
@@ -198,27 +251,36 @@ export function App() {
               <Cell hidden={hidden} onClick={open("talk1")} isTalk>
                 Talk
               </Cell>
-            </tr>
-            <tr>
-              <th scope="row">14:30 - 15:00</th>
-              <Cell rowspan={6} hidden={hidden} onClick={open("innovation")}>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
                 Innovation time
               </Cell>
             </tr>
-            <tr>
-              <th scope="row">15:00 - 15:30</th>
-            </tr>
-            <tr>
-              <th scope="row">15:30 - 16:00</th>
-            </tr>
-            <tr>
-              <th scope="row">16:00 - 16:30</th>
-            </tr>
-            <tr>
-              <th scope="row">16:30 - 17:00</th>
-            </tr>
-            <tr>
-              <th scope="row">17:00 - 17:30</th>
+            <tr className="end-of-day">
+              <th scope="row">14:30 - 17:30</th>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
+              <Cell hidden={hidden} onClick={open("innovation")}>
+                Innovation time
+              </Cell>
             </tr>
           </tbody>
         </table>

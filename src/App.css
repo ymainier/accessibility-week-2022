@@ -13,7 +13,8 @@
   font-family: sky-regular, Helvetica, Arial, sans-serif;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: sky-medium, sky-regular, Helvetica, Arial, sans-serif;
   font-size: 2rem;
   margin: 0.67rem 0;
@@ -27,7 +28,7 @@ h1, h2 {
   --violet: #3b2f89;
   --blue: #1045a8;
   --light-grey: #d8d8dd;
-  --white: #ffffff; 
+  --white: #ffffff;
 }
 
 .app {
@@ -57,7 +58,9 @@ h1, h2 {
   cursor: pointer;
   text-decoration: underline;
   width: 100%;
-  text-align: left;}
+  text-align: left;
+  font-size: 1rem;
+}
 
 .schedule .empty {
   border-top-color: transparent;
@@ -114,4 +117,17 @@ h1, h2 {
 
 .close-button:active {
   background-color: var(--violet);
+}
+
+.schedule .lunch-break th {
+  background-color: #fff;
+  color: #000;
+}
+
+.lunch-break span {
+  padding: 1px 6px;
+}
+
+.end-of-day tr, .end-of-day td {
+  height: 5.75rem;
 }
